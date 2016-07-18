@@ -5,7 +5,7 @@ dogdentityApp.config(['$routeProvider', function($routeProvider){
       templateUrl: 'partials/submit.htm',
       controller: 'submitController'
     })
-    .when('/eval/:img_id', {
+    .when('/eval/:imgname', {
       templateUrl: 'partials/eval.htm',
       controller: 'evalController'
     })
