@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="dogdentityApp">
+    <head>
+        <title>DogDentity</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <style>
+            html, body, input, select, textarea
+            {
+                font-size: 1.05em !important;
+            }
+            .tempColor {
+                color:white;font-size:100px;font-weight:100;
+            }
+            .tempColor2 {
+                color:white;font-size:75px;font-weight:100;
+            }
+            .noClass {
+
+            }
+            label {
+              color:white;
+            }
+        </style>
+
+        <!-- load angular via CDN -->
+        <script src="http://code.angularjs.org/1.5.7/angular.min.js"></script>
+        <script src="http://code.angularjs.org/1.5.7/angular-route.min.js"></script>
+        <script src="http://code.angularjs.org/1.5.7/angular-resource.min.js"></script>
+        <script src="app.js"></script>
+        <script src="routes.js"></script>
+        <script src="services.js"></script>
+        <script src="submitController.js"></script>
+        <script src="evalController.js"></script>
+        <script src="directives.js"></script>
+    </head>
+    <body class="img-responsive" style="background: url('/assets/bg-dog.jpg') no-repeat   center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;">
+
+        <header>
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/" style="color:#57C7C4;">DogDentity</a>
+				</div>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#/home" style="color:#57C7C4;"><i class="fa fa-home"></i> Upload Your Best Friend</a></li>
+  				<li><a href="#/results" style="color:#57C7C4;"><i class="fa fa-home"></i> Results</a></li>
+				</ul>
+			</div>
+			</nav>
+		</header>
+  <div style="min-height: 100%; min-height: 100vh; display: flex; align-items: center;">
+
+    <div class="container">
+
+        <div ng-view="">
+
+        </div>
+
+		</div>
+
+  </div>
+    </body>
+</html>
