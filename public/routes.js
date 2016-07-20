@@ -5,9 +5,11 @@ dogdentityApp.config(['$routeProvider', function($routeProvider){
       templateUrl: 'partials/submit.htm',
       controller: 'submitController'
     })
-    .when('/eval/:imgname', {
-      templateUrl: 'partials/eval.htm',
-      controller: 'evalController'
-    })
-    .otherwise({ redirectTo: '/'});
+    .when('/result', {
+      templateUrl: 'partials/result.htm',
+      controller: 'resultController'
+    });
 }]);
+
+
+// .otherwise({ redirectTo: '/'})

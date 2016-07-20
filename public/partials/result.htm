@@ -1,7 +1,18 @@
 <div class="row" style="padding-top:60px;">
   <div class="col-md-6" style="color:white;font-weight:100;font-size:40px;">
 
-      Breed Results
+      Breed Results<br>
+
+      {{ dogResult.probs.prob1.breed }} | {{ dogResult.probs.prob1.prob }}
+
+      {{ img_buf }}
+      {{ img_url }}
+      {{ mixed }}
+      {{ n_train_images }}
+      {{ n_epochs }}
+      {{ augment }}
+      {{ n_preds }}
+      {{ return_image }}
 
   </div>
   <div class="col-md-6">
