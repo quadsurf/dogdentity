@@ -2,14 +2,14 @@
 
 dogdentityApp.service('formService', function(){
   this.n_epochs;
-  // this.img_buf;
+  // this.image_buf;
 });
 
 
 
 
 dogdentityApp.service('dragDropService', ['$rootScope', function($rootScope){
-  this.img_buf;
+  this.image_buf;
   this.GetFile = function(){
     FileReaderJS.setupDrop(document.getElementById('dropzone'), {
       readAsDefault: "DataURL",
@@ -27,7 +27,7 @@ dogdentityApp.service('dragDropService', ['$rootScope', function($rootScope){
     dataImg = e.target.result;
     console.log(dataImg);
     document.getElementById('image_buf').value = dataImg;
-    // $rootScope.img_buf = dataImg;
+    // $rootScope.image_buf = dataImg;
     $rootScope.$apply(function(){
             this.image_buf = dataImg;
         });
