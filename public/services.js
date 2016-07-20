@@ -17,19 +17,20 @@ dogdentityApp.service('dragDropService', ['$rootScope', function($rootScope){
         load: function(e, file) {
           var img = new Image();
           img.onload = function() {
-            // var oldnoder = document.getElementById('dropzone');
+            // var oldnode = document.getElementById('dropzone');
             document.getElementById('dropzone').appendChild(img);
-            // oldnoder.replaceChild(img,oldnoder)
+            // oldnode.replaceChild(img,oldnode);
           };
     img.src = e.target.result;
     img.width = 150;
     img.height = 150;
     dataImg = e.target.result;
     console.log(dataImg);
-    document.getElementById('img_buf').value = dataImg;
-    // $rootScope.$apply(function(){
-    //         this.img_buf = dataImg;
-    //     });
+    document.getElementById('image_buf').value = dataImg;
+    // $rootScope.img_buf = dataImg;
+    $rootScope.$apply(function(){
+            this.image_buf = dataImg;
+        });
           }
         }
     });
@@ -41,14 +42,14 @@ dogdentityApp.service('dragDropService', ['$rootScope', function($rootScope){
 
 dogdentityApp.service('dogService', ['$resource', function($resource){
 
-  this.GetDog = function(img_buf,img_url,mixed,n_train_images,n_epochs,augment,n_preds,return_image){
+  this.GetDog = function(image_buf,image_url,mixed,n_train_images,n_epochs,augment,n_preds,return_image){
 
     var dogAPI = $resource('http://54.237.232.115:5000/v0.0.1/predict',
     { callback: 'JSON_CALLBACK' }, { get: { method: 'JSONP' } });
 
     return dogAPI.get({
-      img_buf: img_buf,
-      img_url: img_url,
+      image_buf: image_buf,
+      image_url: image_url,
       mixed: mixed,
       n_train_images: n_train_images,
       n_epochs: n_epochs,

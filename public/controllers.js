@@ -1,15 +1,19 @@
 
 
-dogdentityApp.controller('submitController', ['$scope', '$location', 'formService', 'dragDropService', function ($scope, $location, formService, dragDropService) {
+dogdentityApp.controller('submitController', ['$rootScope', '$scope', '$location', 'formService', 'dragDropService', function ($rootScope, $scope, $location, formService, dragDropService) {
 
-  $scope.img_buf = dragDropService.img_buf;
-  $scope.$watch('img_buf', function(){
-      dragDropService.img_buf = $scope.img_buf; });
+  $scope.printme = function(){
+    console.log('work damn-it');
+  };
+
+  $rootScope.image_buf = dragDropService.image_buf;
+  $rootScope.$watch('image_buf', function(){
+      dragDropService.image_buf = $rootScope.image_buf; });
 
 
-  $scope.img_url = formService.img_url;
-  $scope.$watch('img_url', function(){
-    formService.img_url = $scope.img_url; });
+  $scope.image_url = formService.image_url;
+  $scope.$watch('image_url', function(){
+    formService.image_url = $scope.image_url; });
 
 
   $scope.mixed = formService.mixed;
@@ -49,8 +53,9 @@ dogdentityApp.controller('submitController', ['$scope', '$location', 'formServic
   };
 
   $scope.change = function (element) {
+      console.log('booyah');
       $scope.$apply(function() {
-          // $scope.img_buf = document.getElementById('img_buf').length ? document.getElementById('img_buf')[0].name : '';
+          // $scope.image_buf = document.getElementById('image_buf').length ? document.getElementById('image_buf')[0].name : '';
       });
   };
   // stackoverflow.com/questions/25409734/i-cant-detect-programmatically-value-change-in-angularjs
@@ -59,8 +64,8 @@ dogdentityApp.controller('submitController', ['$scope', '$location', 'formServic
 
 
 dogdentityApp.controller('resultController', ['$scope', 'formService', 'dragDropService', 'dogService', function($scope, formService, dragDropService, dogService){
-  $scope.img_buf = dragDropService.img_buf;
-  $scope.img_url = formService.img_url;
+  $scope.image_buf = dragDropService.image_buf;
+  $scope.image_url = formService.image_url;
   $scope.mixed = formService.mixed;
   $scope.n_train_images = formService.n_train_images;
   $scope.n_epochs = formService.n_epochs;
@@ -68,6 +73,6 @@ dogdentityApp.controller('resultController', ['$scope', 'formService', 'dragDrop
   $scope.n_preds = formService.n_preds;
   $scope.return_image = formService.return_image;
 
-  $scope.dogResult = dogService.GetDog($scope.img_buf,$scope.img_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
+  $scope.dogResult = dogService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
 
 }]);

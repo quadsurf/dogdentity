@@ -1,15 +1,13 @@
 //ROUTES
 dogdentityApp.config(['$routeProvider', function($routeProvider){
   $routeProvider
-    .when('/submit', {
+    .when('/', {
       templateUrl: 'partials/submit.htm',
       controller: 'submitController'
     })
     .when('/result', {
       templateUrl: 'partials/result.htm',
       controller: 'resultController'
-    });
+    })
+    .otherwise({ redirectTo: '/'});
 }]);
-
-
-// .otherwise({ redirectTo: '/'})

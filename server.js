@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.post('/uploads', function(req, res){
   console.log(req.body);
   console.log(req.files);
-  res.json({success:true});
+  res.redirect('/eval');
 });
 
 // var public_router = express.Router();
