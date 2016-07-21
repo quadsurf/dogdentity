@@ -2,17 +2,20 @@
 
 dogdentityApp.controller('submitController', ['$scope', '$location', 'formService', 'dragDropService', function ($scope, $location, formService, dragDropService) {
 
-  $scope.printme = function(){
-    console.log('work damn-it');
-  };
 
-  // $scope.getBuf = function(data){
-  //   $scope.image_buf=data;
+  setInterval(function(){
+    $scope.img_buf = document.getElementById('image_buf').value
+    // dragDropService.image_buf = $scope.image_buf
+  },2000);
+
+
+  // $scope.logOutStuff = function() {
+  //   console.log( $scope.img_buf );
   // };
 
-  $scope.image_buf = dragDropService.image_buf;
-  $scope.$watch('image_buf', function(){
-      dragDropService.image_buf = $scope.image_buf; });
+  // $scope.image_buf = dragDropService.image_buf;
+  // $scope.$watch('image_buf', function(){
+  //   dragDropService.image_buf = $scope.image_buf; });
 
 
   $scope.image_url = formService.image_url;
@@ -56,18 +59,17 @@ dogdentityApp.controller('submitController', ['$scope', '$location', 'formServic
       $location.path('/result');
   };
 
-  $scope.change = function (element) {
-      console.log('booyah');
-      $scope.$apply(function() {
-          // $scope.image_buf = document.getElementById('image_buf').length ? document.getElementById('image_buf')[0].name : '';
-      });
-  };
-  // stackoverflow.com/questions/25409734/i-cant-detect-programmatically-value-change-in-angularjs
+  // $scope.change = function (element) {
+  //     $scope.$apply(function() {
+  //         $scope.image_buf = document.getElementById('image_buf').length ? document.getElementById('image_buf')[0].name : '';
+  //     });
+  // };
+  // change function: stackoverflow.com/questions/25409734/i-cant-detect-programmatically-value-change-in-angularjs
 
 }]);
 
 
-dogdentityApp.controller('resultController', ['$scope', 'formService', 'dragDropService', 'dogService', function($scope, formService, dragDropService, dogService){
+dogdentityApp.controller('resultController', ['$scope', 'formService', 'dragDropService', 'dogAPIService', function($scope, formService, dragDropService, dogAPIService){
   $scope.image_buf = dragDropService.image_buf;
   $scope.image_url = formService.image_url;
   $scope.mixed = formService.mixed;
@@ -77,6 +79,6 @@ dogdentityApp.controller('resultController', ['$scope', 'formService', 'dragDrop
   $scope.n_preds = formService.n_preds;
   $scope.return_image = formService.return_image;
 
-  $scope.dogResult = dogAPIService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
+  $scope.dogResult = dogAPIService.GetDog($scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
 
 }]);

@@ -1,4 +1,11 @@
 <div class="row" style="padding-top:60px;">
+
+
+  <!-- <div class="blah">
+    <button type="button" ng-click="logOutStuff()" name="button">Test Image DataURL</button>
+  </div> -->
+
+
   <form ng-submit="submit()">
     <div class="col-md-3">
       <!-- min-height: 100%; display: flex; align-items: center; justify-content: center; padding-top:80px; -->
@@ -39,9 +46,10 @@
 
         <div class="form-group col-md-12">
           <label for="image_buf" style="padding-top:35px;">Drag &amp; Drop Your Doggy Image Above</label>
-          <input type="text" ng-model="image_buf" ng-change="printme()" class="form-control" id="image_buf" name="image_buf">
+          <input type="text" ng-model="image_buf" class="form-control" id="image_buf" name="image_buf">
           <!-- readonly -->
           <!-- angular.element(this).scope().change(this) -->
+           <!-- ng-change="printme()" -->
         </div>
 
         <div class="form-group col-md-12" style="padding-top:17px;">
