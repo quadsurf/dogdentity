@@ -1,14 +1,20 @@
 
 
 dogdentityApp.service('formService', function(){
+  this.image_url;
+  this.mixed;
+  this.n_train_images;
   this.n_epochs;
-  // this.image_buf;
+  this.augment;
+  this.n_preds;
+  this.return_image;
 });
 
 
 
 
-dogdentityApp.service('dragDropService', ['$rootScope', function($rootScope){
+dogdentityApp.service('dragDropService', function(){
+  var self = this;
   this.image_buf;
   this.GetFile = function(){
     FileReaderJS.setupDrop(document.getElementById('dropzone'), {
@@ -27,20 +33,21 @@ dogdentityApp.service('dragDropService', ['$rootScope', function($rootScope){
     dataImg = e.target.result;
     console.log(dataImg);
     document.getElementById('image_buf').value = dataImg;
-    // $rootScope.image_buf = dataImg;
-    $rootScope.$apply(function(){
-            this.image_buf = dataImg;
-        });
+    // $scope.getBuf(dataImg);
+    // $scope.image_buf = dataImg;
+    // $scope.$apply(function(){
+    //         self.image_buf = dataImg;
+    //     });
           }
         }
     });
   }
 
 
-}]);
+});
 
 
-dogdentityApp.service('dogService', ['$resource', function($resource){
+dogdentityApp.service('dogAPIService', ['$resource', function($resource){
 
   this.GetDog = function(image_buf,image_url,mixed,n_train_images,n_epochs,augment,n_preds,return_image){
 

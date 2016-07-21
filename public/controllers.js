@@ -1,14 +1,18 @@
 
 
-dogdentityApp.controller('submitController', ['$rootScope', '$scope', '$location', 'formService', 'dragDropService', function ($rootScope, $scope, $location, formService, dragDropService) {
+dogdentityApp.controller('submitController', ['$scope', '$location', 'formService', 'dragDropService', function ($scope, $location, formService, dragDropService) {
 
   $scope.printme = function(){
     console.log('work damn-it');
   };
 
-  $rootScope.image_buf = dragDropService.image_buf;
-  $rootScope.$watch('image_buf', function(){
-      dragDropService.image_buf = $rootScope.image_buf; });
+  // $scope.getBuf = function(data){
+  //   $scope.image_buf=data;
+  // };
+
+  $scope.image_buf = dragDropService.image_buf;
+  $scope.$watch('image_buf', function(){
+      dragDropService.image_buf = $scope.image_buf; });
 
 
   $scope.image_url = formService.image_url;
@@ -73,6 +77,6 @@ dogdentityApp.controller('resultController', ['$scope', 'formService', 'dragDrop
   $scope.n_preds = formService.n_preds;
   $scope.return_image = formService.return_image;
 
-  $scope.dogResult = dogService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
+  $scope.dogResult = dogAPIService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
 
 }]);

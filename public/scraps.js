@@ -1,3 +1,17 @@
+this.image_url;
+this.mixed;
+this.n_train_images;
+this.n_epochs;
+this.augment;
+this.n_preds;
+this.return_image;
+
+$scope.getBuf(dataImg);
+$scope.getBuf = function(data){
+  $scope.image_buf=data;
+}
+
+
 $scope.submitData = function(){
   var stringed = JSON.stringify($scope.view.formData);
   $scope.view.redditData.push(JSON.parse(stringed));
