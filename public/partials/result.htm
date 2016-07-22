@@ -3,15 +3,16 @@
 
       Breed Results<br>
 
-      {{ dogResult.probs.prob1.breed }} | {{ dogResult.probs.prob1.prob }}
-
-      {{ image_url }}
-      {{ mixed }}
+      Breed: {{ dogResult.probs.prob1.breed }}<br>
+      Prob: {{ dogResult.probs.prob1.prob }}<br>
+      Img URL: {{ dogResult.image_url }}<br>
+      Img Buf: {{ image_buf }}
+      <!-- {{ mixed }}
       {{ n_train_images }}
       {{ n_epochs }}
       {{ augment }}
       {{ n_preds }}
-      {{ return_image }}
+      {{ return_image }} -->
 
   </div>
 </div>

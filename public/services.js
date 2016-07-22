@@ -1,19 +1,22 @@
 
 
 dogdentityApp.service('formService', function(){
-  this.image_url;
-  this.mixed;
-  this.n_train_images;
-  this.n_epochs;
-  this.augment;
-  this.n_preds;
-  this.return_image;
+  // data:image/gif;base64,R0lGODlhCAAIAIAAAP//AP///yH5BAAHAP8ALAAAAAAIAAgAAAIHhI+py+1dAAA7
+  this.image_buf = ' ';
+  this.image_url = ' ';
+  this.mixed = false;
+  this.n_train_images = 5000;
+  this.n_epochs = 50;
+  this.augment = false;
+  this.n_preds = 3;
+  this.return_image = true;
+  this.dogResult = {};
 });
 
 
 
 
-dogdentityApp.service('dragDropService', function(){
+dogdentityApp.service('dragDropService', ['formService', function(formService){
   var self = this;
   // valueToUpdate
   this.GetFile = function(){
@@ -28,10 +31,11 @@ dogdentityApp.service('dragDropService', function(){
             // oldnode.replaceChild(img,oldnode);
           };
     img.src = e.target.result;
-    img.width = 150;
+    // img.width = 150;
     img.height = 150;
     dataImg = e.target.result;
     document.getElementById('image_buf').value = dataImg;
+    formService.image_buf = dataImg;
 
     // return function update() {
     //   return document.getElementById('image_buf').value
@@ -48,18 +52,18 @@ dogdentityApp.service('dragDropService', function(){
   }
 
 
-});
+}]);
 
 
 dogdentityApp.service('dogAPIService', ['$resource', function($resource){
 
   this.GetDog = function(image_buf,image_url,mixed,n_train_images,n_epochs,augment,n_preds,return_image){
-
-    var dogAPI = $resource('http://54.237.232.115:5000/v0.0.1/predict',
+    // old IP: 54.237.232.115
+    var dogAPI = $resource('http://54.205.134.57:5000/v0.0.1/predict',
     { get: { method: 'POST' } });
     // { callback: 'JSON_CALLBACK' },
 
-    var image_buf2 = document.getElementById('image_buf').value;
+    // var image_buf2 = document.getElementById('image_buf').value;
 
     // console.log(image_buf2);
 
@@ -74,6 +78,34 @@ dogdentityApp.service('dogAPIService', ['$resource', function($resource){
       return_image: return_image
     });
 
+  }
+
+}]);
+
+
+dogdentityApp.service('predictService', ['$scope', '$http', '$log', function($scope, $http, $log){
+
+  this.GetDog = function(image_buf,image_url,mixed,n_train_images,n_epochs,augment,n_preds,return_image){
+
+    $http({
+      method: 'POST',
+      url: 'http://54.205.134.57:5000/v0.0.1/predict',
+      param: {
+        image_buf: image_buf,
+        image_url: image_url,
+        mixed: mixed,
+        n_train_images: n_train_images,
+        n_epochs: n_epochs,
+        augment: augment,
+        n_preds: n_preds,
+        return_image: return_image
+      }
+    }).then(function(response){
+      // $scope.dogResult = response.data;
+      $scope.response = response.data;
+      $log.info(response);
+    });
+    return $scope.response;
   }
 
 }]);

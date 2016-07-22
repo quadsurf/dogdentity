@@ -1,21 +1,17 @@
 
 
-dogdentityApp.controller('submitController', ['$scope', '$location', 'formService', 'dragDropService', function ($scope, $location, formService, dragDropService) {
+dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$log', 'formService', 'dragDropService', function ($scope, $http, $location, $log, formService, dragDropService) {
 
 
-  setInterval(function(){
-    $scope.img_buf = document.getElementById('image_buf').value
-    // dragDropService.image_buf = $scope.image_buf
-  },2000);
+  // setInterval(function(){
+  //   $scope.img_buf = document.getElementById('image_buf').value
+  //   // dragDropService.image_buf = $scope.image_buf
+  // },2000);
 
 
-  // $scope.logOutStuff = function() {
-  //   console.log( $scope.img_buf );
-  // };
-
-  // $scope.image_buf = dragDropService.image_buf;
-  // $scope.$watch('image_buf', function(){
-  //   dragDropService.image_buf = $scope.image_buf; });
+  $scope.image_buf = formService.image_buf;
+  $scope.$watch('image_buf', function(){
+    formService.image_buf = $scope.image_buf; });
 
 
   $scope.image_url = formService.image_url;
@@ -56,7 +52,30 @@ dogdentityApp.controller('submitController', ['$scope', '$location', 'formServic
   $scope.fileViewer = dragDropService.GetFile();
 
   $scope.submit = function (){
+    console.log('img buf val @ time of submission: ', formService.image_buf);
+    $http({
+      method: 'POST',
+      url: 'http://54.205.134.57:5000/v0.0.1/predict',
+      params: {
+        image_buf: formService.image_buf,
+        image_url: $scope.image_url,
+        mixed: $scope.mixed,
+        n_train_images: $scope.n_train_images,
+        n_epochs: $scope.n_epochs,
+        augment: $scope.augment,
+        n_preds: $scope.n_preds,
+        return_image: $scope.return_image
+      }
+    }).then(function(response){
+      formService.dogResult = response.data;
+      $log.info('formServiceDogResult: ', formService.dogResult);
+    }).then(function(){
+      $scope.dogResult = formService.dogResult;
+      $log.info('controllerDogResult: ', $scope.dogResult);
+    }).then(function(){
       $location.path('/result');
+    });
+
   };
 
   // $scope.change = function (element) {
@@ -69,8 +88,12 @@ dogdentityApp.controller('submitController', ['$scope', '$location', 'formServic
 }]);
 
 
-dogdentityApp.controller('resultController', ['$scope', 'formService', 'dragDropService', 'dogAPIService', function($scope, formService, dragDropService, dogAPIService){
-  $scope.image_buf = dragDropService.image_buf;
+dogdentityApp.controller('resultController', ['$scope', 'formService', function($scope, formService){
+  $scope.image_buf = formService.image_buf;
+  $scope.dogResult = formService.dogResult;
+
+  console.log('After formService Update: ',$scope.image_buf);
+
   $scope.image_url = formService.image_url;
   $scope.mixed = formService.mixed;
   $scope.n_train_images = formService.n_train_images;
@@ -79,6 +102,12 @@ dogdentityApp.controller('resultController', ['$scope', 'formService', 'dragDrop
   $scope.n_preds = formService.n_preds;
   $scope.return_image = formService.return_image;
 
-  $scope.dogResult = dogAPIService.GetDog($scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
+  console.log('Before dogResult Call: ',$scope.image_buf);
+
+  // $scope.dogResult = dogAPIService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
+
+    // $scope.dogResult = predictService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
+
+  console.log('After dogResult Call: ',$scope.image_buf);
 
 }]);
