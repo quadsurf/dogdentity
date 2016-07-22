@@ -11,42 +11,44 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
 
   $scope.image_buf = formService.image_buf;
   $scope.$watch('image_buf', function(){
-    formService.image_buf = $scope.image_buf; });
+    formService.image_buf = $scope.image_buf;
+  });
 
 
   $scope.image_url = formService.image_url;
   $scope.$watch('image_url', function(){
-    formService.image_url = $scope.image_url; });
+    formService.image_url = $scope.image_url;
+  });
 
 
   $scope.mixed = formService.mixed;
   $scope.$watch('mixed', function(){
-    formService.mixed = $scope.mixed; });
+    formService.mixed = $scope.mixed;
+  });
 
 
   $scope.n_train_images = formService.n_train_images;
   $scope.$watch('n_train_images', function(){
-    formService.n_train_images = $scope.n_train_images; });
+    formService.n_train_images = $scope.n_train_images;
+  });
 
 
   $scope.n_epochs = formService.n_epochs;
   $scope.$watch('n_epochs', function(){
-    formService.n_epochs = $scope.n_epochs; });
+    formService.n_epochs = $scope.n_epochs;
+  });
 
 
   $scope.augment = formService.augment;
   $scope.$watch('augment', function(){
-    formService.augment = $scope.augment; });
+    formService.augment = $scope.augment;
+  });
 
 
   $scope.n_preds = formService.n_preds;
   $scope.$watch('n_preds', function(){
-    formService.n_preds = $scope.n_preds; });
-
-
-  $scope.return_image = formService.return_image;
-  $scope.$watch('return_image', function(){
-    formService.return_image = $scope.return_image; });
+    formService.n_preds = $scope.n_preds;
+  });
 
 
   $scope.fileViewer = dragDropService.GetFile();
@@ -63,8 +65,7 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
         n_train_images: $scope.n_train_images,
         n_epochs: $scope.n_epochs,
         augment: $scope.augment,
-        n_preds: $scope.n_preds,
-        return_image: $scope.return_image
+        n_preds: $scope.n_preds
       }
     }).then(function(response){
       formService.dogResult = response.data;
@@ -100,13 +101,12 @@ dogdentityApp.controller('resultController', ['$scope', 'formService', function(
   $scope.n_epochs = formService.n_epochs;
   $scope.augment = formService.augment;
   $scope.n_preds = formService.n_preds;
-  $scope.return_image = formService.return_image;
 
   console.log('Before dogResult Call: ',$scope.image_buf);
 
-  // $scope.dogResult = dogAPIService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
+  // $scope.dogResult = dogAPIService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds);
 
-    // $scope.dogResult = predictService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds,$scope.return_image);
+    // $scope.dogResult = predictService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds);
 
   console.log('After dogResult Call: ',$scope.image_buf);
 

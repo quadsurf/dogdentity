@@ -1,3 +1,27 @@
+{
+  rand_samples : [
+    { image_url: 'http://www', post_url: 'http://54.205.134.57:5000/v0.0.1/predict?augment=true&image_url=http://www&mixed=true&n_epochs=50&n_preds=3&n_train_images=5000&return_image=true' },
+    { image_url: 'http://www', post_url: 'http://54.205.134.57:5000/v0.0.1/predict?augment=true&image_url=http://www&mixed=true&n_epochs=50&n_preds=3&n_train_images=5000&return_image=true' },
+    { image_url: 'http://www', post_url: 'http://54.205.134.57:5000/v0.0.1/predict?augment=true&image_url=http://www&mixed=true&n_epochs=50&n_preds=3&n_train_images=5000&return_image=true' },
+    { image_url: 'http://www', post_url: 'http://54.205.134.57:5000/v0.0.1/predict?augment=true&image_url=http://www&mixed=true&n_epochs=50&n_preds=3&n_train_images=5000&return_image=true' }
+  ]
+}
+
+
+
+{
+thumbs: [
+    'http://54.205.134.57:5000/static/full_validation/rottweiler/n02106550_6926.jpg',
+    'http://54.205.134.57:5000/static/full_validation/doberman/n02107142_15436.jpg',
+    'http://54.205.134.57:5000/static/full_validation/beagle/n02088364_13682.jpg',
+    'http://54.205.134.57:5000/static/full_validation/border_collie/n02106166_3473.jpg',
+    'http://54.205.134.57:5000/static/full_validation/giant_schnauzer/n02097130_5750.jpg',
+    'http://54.205.134.57:5000/static/full_validation/basset_hound/n02088238_9994.jpg'
+  ]
+}
+
+
+
 this.image_url;
 this.mixed;
 this.n_train_images;

@@ -11,27 +11,29 @@
       <!-- min-height: 100%; display: flex; align-items: center; justify-content: center; padding-top:80px; -->
 
       <div class="col-md-6 col-md-offset-3" style="margin:10px;">
-        <span style="color:white;text-align:center;padding-left:10px;">Settings</span>
+        <span style="text-align:center;padding-left:10px;color:white;font-weight:100;font-size:40px;">Settings</span>
       </div>
 
-      <div class="form-group checkbox col-md-12">
-        <label for="mixed" style="font-weight:700;font-size:20px;">
-          <input type="checkbox" ng-model="mixed" id="mixed" name="mixed"> Mixed Breed?
+      <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;">
+        <label for="mixed" style="color:#57C7C4;font-weight:100;font-size:27px;">
+          Mixed Breed? <input type="checkbox" ng-model="mixed" id="mixed" name="mixed" ng-init="mixed=false">
         </label>
       </div>
 
-      <div class="form-group col-md-12">
-        <label for="n_train_images">Train Images</label>
-        <input type="text" ng-model="n_train_images" class="form-control" id="n_train_images" name="n_train_images" value="1000">
+      <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;padding-bottom:17px;">
+        <label for="n_train_images" style="color:#57C7C4;font-weight:100;font-size:27px;">Train Images</label>
+        <input type="text" ng-model="n_train_images" class="form-control" id="n_train_images" name="n_train_images">
       </div>
 
-      <div class="form-group col-md-12">
-        <label for="n_epochs">Epochs</label>
-        <input type="text" ng-model="n_epochs" class="form-control" id="n_epochs" name="n_epochs" value="50">
+      <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;padding-bottom:17px;">
+        <label for="n_epochs" style="color:#57C7C4;font-weight:100;font-size:27px;">Epochs</label>
+        <input type="text" ng-model="n_epochs" class="form-control" id="n_epochs" name="n_epochs">
       </div>
 
-      <div class="form-group col-md-12">
-        <label for="augment"><input type="checkbox" ng-model="augment" id="augment" name="augment"> Augment?</label>
+      <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;">
+        <label for="augment" style="color:#57C7C4;font-weight:100;font-size:27px;">
+          Augment? <input type="checkbox" ng-model="augment" id="augment" name="augment" ng-init="augment=true">
+        </label>
       </div>
 
     </div>
@@ -41,25 +43,25 @@
           <img src="assets/images/logo.png" style="margin-top:0;margin-bottom:30px;" />
         </div>
 
-        <div id="dropzone" class="col-md-12" style="height: 200px; padding: 10px; border: 6px dashed #57C7C4; border-radius:25px; min-height: 100%; display: flex; align-items: center; justify-content: center; background-color:rgba(255, 255, 255, 0.5);">
+        <div id="dropzone" class="col-md-12 text-center" style="height: 200px; padding: 10px; border: 6px dashed #57C7C4; border-radius:25px; min-height: 100%; display: flex; align-items: center; justify-content: center; background-color:rgba(255, 255, 255, 0.5);">
+          <span id="dropText" style="font-weight:100;font-size:40px;color:#222;">Drag &amp; Drop<br>Your Doggy Image Here</span>
         </div>
 
-        <div class="form-group col-md-12">
-          <label for="image_buf" style="padding-top:35px;">Drag &amp; Drop Your Doggy Image Above</label>
-          <input type="text" ng-model="image_buf" class="form-control" id="image_buf" name="image_buf">
-          <!-- readonly -->
-          <!-- angular.element(this).scope().change(this) -->
-           <!-- ng-change="printme()" -->
-        </div>
+        <!-- <div class="form-group col-md-12"> -->
+          <!-- <label for="image_buf" style="padding-top:35px;">Drag &amp; Drop Your Doggy Image Above</label> -->
+          <input type="hidden" ng-model="image_buf" class="form-control" id="image_buf" name="image_buf">
+          <!-- readonly
+          angular.element(this).scope().change(this)
+           ng-change="printme()" -->
+        <!-- </div> -->
 
-        <div class="form-group col-md-12" style="padding-top:17px;">
-          <label for="image_url">or Paste Image URL from Web</label>
+        <div class="form-group col-md-12 text-center" style="background-color:rgba(0, 0, 0, 0.5);border-radius:25px;padding-bottom:20px;margin-top:17px;padding-top:17px;">
+          <label for="image_url" style="color:#57C7C4;font-weight:100;font-size:27px;">or<br>Paste Below an Image URL from the Web</label>
           <input type="text" ng-model="image_url" class="form-control" id="image_url" name="img_url">
         </div>
 
 
-          <input type="hidden" ng-model="n_preds" value="3" name="n_preds">
-          <input type="checkbox" ng-model="return_image" name="return_image" style="display:none;" checked>
+          <input type="hidden" ng-model="n_preds" name="n_preds">
         <input type="submit" class="btn btn-primary btn-lg col-lg-8 col-lg-offset-2" value="Run Breed Analysis" style="margin-top:40px; background-color:#57C7C4; border:none;">
 
     </div>
