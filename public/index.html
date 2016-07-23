@@ -7,7 +7,11 @@
 
         <!-- load bootstrap and fontawesome via CDN -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/style.css" media="screen" title="no title" charset="utf-8">
         <style>
+            html, body {
+            height: 100%;
+            }
             html, body, input, select, textarea
             {
                 font-size: 1.05em !important;
@@ -25,6 +29,20 @@
               color:#57C7C4;
               font-family: Avenir;
             }
+            .wrapper {
+                min-height: 100%;
+                height: auto !important;
+                height: 100%;
+                margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
+            }
+            .footer, .push {
+                height: 60px; /* .push must be the same height as .footer */
+            }
+            .footer {
+              background-color:rgba(0, 0, 0, 0.9);
+              color:#57C7C4;
+            }
+            /*min-height: 100%; min-height: 100vh; display: flex; align-items: center;*/
         </style>
 
         <script src="assets/js/filereader.js"></script>
@@ -43,7 +61,7 @@
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;">
-
+  <div class="wrapper">
     <header>
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
@@ -58,9 +76,8 @@ background-size: cover;">
 			</div>
 			</nav>
 		</header>
-  <div style="min-height: 100%; min-height: 100vh; display: flex; align-items: center;">
 
-    <div class="container">
+    <div class="container" style="min-height: 100%; min-height: 100vh; display: flex; align-items: center;">
 
         <div ng-view="">
 
@@ -68,6 +85,19 @@ background-size: cover;">
 
 		</div>
 
-  </div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
+        <div class="push"></div>
+      </div>
+      <div class="footer">
+        <div class="container" style="display: flex; align-items: center; justify-content: center;">
+          <p style="padding-top:20px;">Charles Lynn &amp; Chris Castro - Copyright &copy; 2016 - All Right's Reserved</p>
+        </div>
+      </div>
+
     </body>
 </html>

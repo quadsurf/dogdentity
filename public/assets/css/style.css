@@ -1,0 +1,13 @@
+section { padding: 5%; position: relative; }
+.profile-hover {
+    display: none;
+    position: relative;
+    top: 0
+    left: 0;
+    z-index: 99;
+    border: 1px solid #333;
+    background: #eee;
+    width: 300px;
+    text-align: center;
+}
+a:hover + div { display: block; }

@@ -1,3 +1,12 @@
+// range: {
+// 'min': 0,
+// '25%': 5,
+// '50%': 30,
+// '75%': 150,
+// 'max': 0
+// },
+
+
 {
   rand_samples : [
     { image_url: 'http://www', post_url: 'http://54.205.134.57:5000/v0.0.1/predict?augment=true&image_url=http://www&mixed=true&n_epochs=50&n_preds=3&n_train_images=5000&return_image=true' },

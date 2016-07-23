@@ -1,3 +1,27 @@
+
+
+<!-- <script>
+  var bigValueSlider = document.getElementById('slider-huge'),
+  bigValueSpan = document.getElementById('huge-value');
+
+  noUiSlider.create(bigValueSlider, {
+    start: 150,
+    step: 1,
+    format: wNumb({
+      decimals: 0
+    }),
+    range: {
+    'min': 0,
+    'max': 0
+    },
+    pips: {
+    		mode: 'values',
+    		values: [5, 30, 150],
+    		density: 25
+    }
+  });
+</script> -->
+
 <div class="row" style="padding-top:60px;">
 
 
@@ -21,20 +45,41 @@
       </div>
 
       <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;padding-bottom:17px;">
-        <label for="n_train_images" style="color:#57C7C4;font-weight:100;font-size:27px;">Train Images</label>
+        <label for="n_train_images" style="color:#57C7C4;font-weight:100;font-size:27px;">Train Images<section>
+            <i class="glyphicon glyphicon-question-sign"></i>
+            <div class="profile-hover">
+                <h4>IMAGE TRAINING</h4>
+                <p>The number of images used to train the weights in the neural network. 31,000 is a good number to test with!</p>
+            </div>
+          </section>
+        </label>
         <input type="text" ng-model="n_train_images" class="form-control" id="n_train_images" name="n_train_images">
       </div>
+
 
       <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;padding-bottom:17px;">
         <label for="n_epochs" style="color:#57C7C4;font-weight:100;font-size:27px;">Epochs</label>
         <input type="text" ng-model="n_epochs" class="form-control" id="n_epochs" name="n_epochs">
       </div>
+      <section>
+        <div class="profile-hover">
+            <h4>EPOCHS</h4>
+            <p>During the iterative training of the neural network, an Epoch is a single pass through the entire image training dataset. 150 is a good number to test this out!</p>
+        </div>
+      </section>
+
 
       <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;">
         <label for="augment" style="color:#57C7C4;font-weight:100;font-size:27px;">
           Augment? <input type="checkbox" ng-model="augment" id="augment" name="augment" ng-init="augment=true">
         </label>
       </div>
+      <section>
+        <div class="profile-hover">
+            <h4>AUGMENTATION</h4>
+            <p>Adjusting images by slightly rotating,  zooming,  cropping, or mirror an images differently for every Epoch. Since the neural network never see the exact same image it helps prevent it from memorizing the training set. So leaving this checkbox checked, is a good idea!</p>
+        </div>
+      </section>
 
     </div>
     <div class="col-md-6">
@@ -55,7 +100,7 @@
            ng-change="printme()" -->
         <!-- </div> -->
 
-        <div class="form-group col-md-12 text-center" style="background-color:rgba(0, 0, 0, 0.5);border-radius:25px;padding-bottom:20px;margin-top:17px;padding-top:17px;">
+        <div class="form-group col-md-12 text-center" style="background-color:rgba(0, 0, 0, 0.5);border-radius:25px;padding-bottom:20px;margin-top:50px;padding-top:17px;">
           <label for="image_url" style="color:#57C7C4;font-weight:100;font-size:27px;">or<br>Paste Below an Image URL from the Web</label>
           <input type="text" ng-model="image_url" class="form-control" id="image_url" name="img_url">
         </div>
