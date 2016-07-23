@@ -1,13 +1,12 @@
-section { padding: 5%; position: relative; }
-.profile-hover {
-    display: none;
-    position: relative;
-    top: 0
-    left: 0;
-    z-index: 99;
-    border: 1px solid #333;
-    background: #eee;
-    width: 300px;
-    text-align: center;
+div.tooltip-inner {
+    text-align: left;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    background-color: #505050;
+    font-size: 18px;
+    /*max-width: 350px;*/
+    width: 450px;
+    padding: 15px;
 }
-a:hover + div { display: block; }

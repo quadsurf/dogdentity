@@ -22,7 +22,7 @@
   });
 </script> -->
 
-<div class="row" style="padding-top:60px;">
+<div class="row" style="padding-top:80px;">
 
 
   <!-- <div class="blah">
@@ -45,41 +45,53 @@
       </div>
 
       <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;padding-bottom:17px;">
-        <label for="n_train_images" style="color:#57C7C4;font-weight:100;font-size:27px;">Train Images<section>
-            <i class="glyphicon glyphicon-question-sign"></i>
-            <div class="profile-hover">
+          <section style="display:block;">
+            <label for="n_train_images" style="color:#57C7C4;font-weight:100;font-size:27px;">Train Images
+            <a href="#" data-toggle="train" data-placement="right" title="The number of images used to train the weights in the neural network. 31,000 is a good number to test with!" style="color:#57C7C4;"><i class="glyphicon glyphicon-question-sign"></i></a>
+            <script>
+              $(function () {
+                $('[data-toggle="train"]').tooltip();
+                $('[data-toggle="epochs"]').tooltip();
+                $('[data-toggle="augment"]').tooltip();
+              })
+            </script>
+            <!-- <div>
                 <h4>IMAGE TRAINING</h4>
                 <p>The number of images used to train the weights in the neural network. 31,000 is a good number to test with!</p>
-            </div>
+            </div> -->
+          </label>
           </section>
-        </label>
         <input type="text" ng-model="n_train_images" class="form-control" id="n_train_images" name="n_train_images">
       </div>
 
 
       <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;padding-bottom:17px;">
-        <label for="n_epochs" style="color:#57C7C4;font-weight:100;font-size:27px;">Epochs</label>
+        <section style="display:block;">
+          <label for="n_epochs" style="color:#57C7C4;font-weight:100;font-size:27px;">Epochs
+          <a href="#" data-toggle="epochs" data-placement="right" title="During the iterative training of the neural network, an Epoch is a single pass through the entire image training dataset. 150 is a good number to test this out!" style="color:#57C7C4;"><i class="glyphicon glyphicon-question-sign"></i></a>
+          <!-- <div>
+              <h4>EPOCHS</h4>
+              <p>During the iterative training of the neural network, an Epoch is a single pass through the entire image training dataset. 150 is a good number to test this out!</p>
+          </div> -->
+          </label>
+        </section>
         <input type="text" ng-model="n_epochs" class="form-control" id="n_epochs" name="n_epochs">
       </div>
-      <section>
-        <div class="profile-hover">
-            <h4>EPOCHS</h4>
-            <p>During the iterative training of the neural network, an Epoch is a single pass through the entire image training dataset. 150 is a good number to test this out!</p>
-        </div>
-      </section>
 
 
       <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;">
-        <label for="augment" style="color:#57C7C4;font-weight:100;font-size:27px;">
-          Augment? <input type="checkbox" ng-model="augment" id="augment" name="augment" ng-init="augment=true">
-        </label>
+        <section style="display:block;">
+          <label for="augment" style="color:#57C7C4;font-weight:100;font-size:27px;">Augment?
+            <input type="checkbox" ng-model="augment" id="augment" name="augment" ng-init="augment=true" style="background-color:#57C7C4;">
+              <a href="#" data-toggle="augment" data-placement="right" title="Adjusting images by slightly rotating,  zooming,  cropping, or mirror an images differently for every Epoch. Since the neural network never see the exact same image it helps prevent it from memorizing the training set. So leaving this checkbox checked, is a good idea!" style="color:#57C7C4;"><i class="glyphicon glyphicon-question-sign"></i></a>
+                <!-- <div>
+                    <h4>AUGMENTATION</h4>
+                    <p>Adjusting images by slightly rotating,  zooming,  cropping, or mirror an images differently for every Epoch. Since the neural network never see the exact same image it helps prevent it from memorizing the training set. So leaving this checkbox checked, is a good idea!</p>
+                </div> -->
+          </label>
+        </section>
       </div>
-      <section>
-        <div class="profile-hover">
-            <h4>AUGMENTATION</h4>
-            <p>Adjusting images by slightly rotating,  zooming,  cropping, or mirror an images differently for every Epoch. Since the neural network never see the exact same image it helps prevent it from memorizing the training set. So leaving this checkbox checked, is a good idea!</p>
-        </div>
-      </section>
+
 
     </div>
     <div class="col-md-6">
@@ -130,5 +142,14 @@
   </form>
 </div>
 
-   <!-- <div class="alert alert-info">Server Response: {{response | json}}</div> -->
- <!-- col-md-offset-3 -->
+
+
+
+
+<div class="row">
+
+  <div class="col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:25px;padding:20px;margin:50px;color:white;">
+    Description:<br><br><br><br><br><br><br><br>
+  </div>
+
+</div>
