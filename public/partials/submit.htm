@@ -55,10 +55,6 @@
                 $('[data-toggle="augment"]').tooltip();
               })
             </script>
-            <!-- <div>
-                <h4>IMAGE TRAINING</h4>
-                <p>The number of images used to train the weights in the neural network. 31,000 is a good number to test with!</p>
-            </div> -->
           </label>
           </section>
         <input type="text" ng-model="n_train_images" class="form-control" id="n_train_images" name="n_train_images">
@@ -69,10 +65,6 @@
         <section style="display:block;">
           <label for="n_epochs" style="color:#57C7C4;font-weight:100;font-size:27px;">Epochs
           <a href="#" data-toggle="epochs" data-placement="right" title="During the iterative training of the neural network, an Epoch is a single pass through the entire image training dataset. 150 is a good number to test this out!" style="color:#57C7C4;"><i class="glyphicon glyphicon-question-sign"></i></a>
-          <!-- <div>
-              <h4>EPOCHS</h4>
-              <p>During the iterative training of the neural network, an Epoch is a single pass through the entire image training dataset. 150 is a good number to test this out!</p>
-          </div> -->
           </label>
         </section>
         <input type="text" ng-model="n_epochs" class="form-control" id="n_epochs" name="n_epochs">
@@ -84,10 +76,6 @@
           <label for="augment" style="color:#57C7C4;font-weight:100;font-size:27px;">Augment?
             <input type="checkbox" ng-model="augment" id="augment" name="augment" ng-init="augment=true" style="background-color:#57C7C4;">
               <a href="#" data-toggle="augment" data-placement="right" title="Adjusting images by slightly rotating,  zooming,  cropping, or mirror an images differently for every Epoch. Since the neural network never see the exact same image it helps prevent it from memorizing the training set. So leaving this checkbox checked, is a good idea!" style="color:#57C7C4;"><i class="glyphicon glyphicon-question-sign"></i></a>
-                <!-- <div>
-                    <h4>AUGMENTATION</h4>
-                    <p>Adjusting images by slightly rotating,  zooming,  cropping, or mirror an images differently for every Epoch. Since the neural network never see the exact same image it helps prevent it from memorizing the training set. So leaving this checkbox checked, is a good idea!</p>
-                </div> -->
           </label>
         </section>
       </div>

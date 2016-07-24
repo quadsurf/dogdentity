@@ -1,18 +1,49 @@
-<div class="row" style="padding-top:60px;">
-  <div class="col-md-6" style="color:white;font-weight:100;font-size:40px;">
 
-      Breed Results<br>
 
-      Breed: {{ dogResult.probs.prob1.breed }}<br>
-      Prob: {{ dogResult.probs.prob1.prob }}<br>
-      Img URL: {{ dogResult.image_url }}<br>
-      Img Buf: {{ image_buf }}
-      <!-- {{ mixed }}
-      {{ n_train_images }}
-      {{ n_epochs }}
-      {{ augment }}
-      {{ n_preds }}
-      {{ return_image }} -->
+<div class="row" style="padding-top:80px;">
+
+  <div class="col-md-12" style="color:white;font-weight:100;font-size:40px;">
+    Breed Results
+  </div>
+
+  <div class="col-md-5" style="display:flex;justify-content:center;align-items: center;background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:31px;padding-bottom:31px;">
+
+      <img class="img-rounded" ng-src="{{ dogResult.image_url ? dogResult.image_url : 'assets/images/sample1.jpg' }}" width="300" height="300" style="border:0;margin:40px;" />
 
   </div>
+
+  <div class="col-md-1"></div>
+
+  <div class="col-md-6 text-center" style="color:white;font-weight:100;font-size:40px;background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:20px;padding-bottom:20px;">
+
+    We are<br>
+    <span style="font-family:Georgia;font-size:84px;font-weight:100;color:#57C7C4;">{{ dogResult.probs.prob1.prob }}%</span><br>
+    confident your dog is a<br>
+    <span style="color:#57C7C4;">{{ dogResult.probs.prob1.breed }}</span>! <sup>*</sup>
+
+    <br><hr class="col-md-8 col-md-offset-2">
+
+    <div class="col-md-12" style="font-size:24px;">
+      <sup>*</sup> There's a <span style="color:#57C7C4;">{{ dogResult.probs.prob2.prob }}%</span> chance it's a <span style="color:#57C7C4;">{{ dogResult.probs.prob2.breed }}</span>.<br>
+      <sup>*</sup> There's a <span style="color:#57C7C4;">{{ dogResult.probs.prob3.prob }}%</span> chance it's a <span style="color:#57C7C4;">{{ dogResult.probs.prob3.breed }}</span>.
+    </div>
+
+  </div>
+
+  <div class="col-md-12" style="height:40px;"></div>
+
+  <div class="col-md-5" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;color:#57C7C4;font-weight:100;font-size:27px;clear:both;">
+    SETTINGS USED
+    <ul>
+      <li>Mixed Breed: {{mixed}}</li>
+      <li># of Images Trained On: {{n_train_images}}</li>
+      <li>Epochs: {{n_epochs}}</li>
+      <li>Augmented: {{augment}}</li>
+    </ul>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-md-6" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;color:#57C7C4;font-weight:100;font-size:27px;">
+    wiki
+  </div>
+  <div class="col-md-12" style="height:40px;"></div>
 </div>

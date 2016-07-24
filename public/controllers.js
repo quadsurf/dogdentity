@@ -102,12 +102,11 @@ dogdentityApp.controller('resultController', ['$scope', 'formService', function(
   $scope.augment = formService.augment;
   $scope.n_preds = formService.n_preds;
 
-  console.log('Before dogResult Call: ',$scope.image_buf);
+  $scope.formattedperc = function(numb){
+    return numb * 100;
+  }
+  // $scope.newNumb = formattedperc($scope.dogResult.probs.prob1.prob);
 
-  // $scope.dogResult = dogAPIService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds);
-
-    // $scope.dogResult = predictService.GetDog($scope.image_buf,$scope.image_url,$scope.mixed,$scope.n_train_images,$scope.n_epochs,$scope.augment,$scope.n_preds);
-
-  console.log('After dogResult Call: ',$scope.image_buf);
+  
 
 }]);
