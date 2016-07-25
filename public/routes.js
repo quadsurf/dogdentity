@@ -1,5 +1,6 @@
 //ROUTES
-dogdentityApp.config(['$routeProvider', function($routeProvider){
+dogdentityApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
+
   $routeProvider
     .when('/', {
       templateUrl: 'partials/submit.htm',
@@ -10,4 +11,11 @@ dogdentityApp.config(['$routeProvider', function($routeProvider){
       controller: 'resultController'
     })
     .otherwise({ redirectTo: '/'});
+
+  $httpProvider.defaults.headers.common = {};
+  $httpProvider.defaults.headers.get = {};
+  $httpProvider.defaults.headers.post = {};
+  $httpProvider.defaults.headers.put = {};
+  $httpProvider.defaults.headers.patch = {};
+
 }]);

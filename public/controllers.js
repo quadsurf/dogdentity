@@ -70,6 +70,9 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
     $http({
       method: 'POST',
       url: 'http://54.205.134.57:5000/v0.0.1/predict',
+      headers: {
+        'Content-Type': undefined
+      }
       params: {
         image_buf: formService.image_buf,
         image_url: sample || $scope.image_url,
@@ -94,6 +97,9 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
   //   $http({
   //     method: 'POST',
   //     url: 'http://54.205.134.57:5000/v0.0.1/predict',
+  //     headers: {
+  //       'Content-Type': undefined
+  //     }
   //     params: {
   //       image_buf: formService.image_buf,
   //       image_url: sample,
