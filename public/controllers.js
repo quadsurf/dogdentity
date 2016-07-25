@@ -9,6 +9,17 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
   // },2000);
 
 
+  (function(){
+    $http({
+      method: 'GET',
+      url: 'http://54.205.134.57:5000/v0.0.1/get_thumbnails?n_images=4'
+    })
+    .then(function(response){
+      $scope.samples = response.data;
+    });
+  })();
+
+
   $scope.image_buf = formService.image_buf;
   $scope.$watch('image_buf', function(){
     formService.image_buf = $scope.image_buf;
@@ -53,14 +64,15 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
 
   $scope.fileViewer = dragDropService.GetFile();
 
-  $scope.submit = function (){
-    console.log('img buf val @ time of submission: ', formService.image_buf);
+  $scope.submit = function (sample){
+    $log.info('img buf val @ time of submission: ', formService.image_buf);
+    $log.info('is this click working? ', sample);
     $http({
       method: 'POST',
       url: 'http://54.205.134.57:5000/v0.0.1/predict',
       params: {
         image_buf: formService.image_buf,
-        image_url: $scope.image_url,
+        image_url: sample || $scope.image_url,
         mixed: $scope.mixed,
         n_train_images: $scope.n_train_images,
         n_epochs: $scope.n_epochs,
@@ -69,22 +81,37 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
       }
     }).then(function(response){
       formService.dogResult = response.data;
-      $log.info('formServiceDogResult: ', formService.dogResult);
     }).then(function(){
       $scope.dogResult = formService.dogResult;
-      $log.info('controllerDogResult: ', $scope.dogResult);
     }).then(function(){
       $location.path('/result');
     });
 
   };
 
-  // $scope.change = function (element) {
-  //     $scope.$apply(function() {
-  //         $scope.image_buf = document.getElementById('image_buf').length ? document.getElementById('image_buf')[0].name : '';
-  //     });
+  // $scope.getSample = function(sample){
+  //   $log.info('is this click working? ', sample);
+  //   $http({
+  //     method: 'POST',
+  //     url: 'http://54.205.134.57:5000/v0.0.1/predict',
+  //     params: {
+  //       image_buf: formService.image_buf,
+  //       image_url: sample,
+  //       mixed: $scope.mixed,
+  //       n_train_images: $scope.n_train_images,
+  //       n_epochs: $scope.n_epochs,
+  //       augment: $scope.augment,
+  //       n_preds: $scope.n_preds
+  //     }
+  //   }).then(function(response){
+  //     formService.dogResult = response.data;
+  //   }).then(function(){
+  //     $scope.dogResult = formService.dogResult;
+  //   }).then(function(){
+  //     $location.path('/result');
+  //   });
+  //
   // };
-  // change function: stackoverflow.com/questions/25409734/i-cant-detect-programmatically-value-change-in-angularjs
 
 }]);
 
@@ -107,6 +134,6 @@ dogdentityApp.controller('resultController', ['$scope', 'formService', function(
   }
   // $scope.newNumb = formattedperc($scope.dogResult.probs.prob1.prob);
 
-  
+
 
 }]);

@@ -110,21 +110,14 @@
         <input type="submit" class="btn btn-primary btn-lg col-lg-8 col-lg-offset-2" value="Run Breed Analysis" style="margin-top:40px; background-color:#57C7C4; border:none;">
 
     </div>
-    <div class="col-md-3">
-      <div class="col-md-6 col-md-offset-3" style="margin:10px;">
-        <span style="color:white;text-align:center;padding-left:10px;">Samples</span>
-      </div>
+    <div class="col-md-3" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-bottom:20px;">
+
       <div class="col-md-12" style="margin:10px;">
-        <img src="assets/images/sample1.jpg" class="img-rounded img-responsive" style="width:100px;height:100px;" />
+        <span style="text-align:center;color:white;font-weight:100;font-size:40px;">Dog Samples</span>
       </div>
-      <div class="col-md-12" style="margin:10px;">
-        <img src="assets/images/sample2.jpg" class="img-rounded img-responsive" style="width:100px;height:100px;" />
-      </div>
-      <div class="col-md-12" style="margin:10px;">
-        <img src="assets/images/sample3.jpg" class="img-rounded img-responsive" style="width:100px;height:100px;" />
-      </div>
-      <div class="col-md-12" style="margin:10px;">
-        <img src="assets/images/sample4.png" class="img-rounded img-responsive" style="width:100px;height:100px;" />
+
+      <div class="col-md-12" ng-repeat="sample in samples.rand_samples" style="display:flex;align-items:center;justify-content:center;">
+        <img ng-click="submit(sample)" ng-src="{{sample}}" class="img-rounded" style="margin:10px;height:130px;cursor:pointer;cursor:hand;">
       </div>
     </div>
   </form>
