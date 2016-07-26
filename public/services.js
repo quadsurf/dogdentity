@@ -36,16 +36,6 @@ dogdentityApp.service('dragDropService', ['formService', function(formService){
     document.getElementById("dropText").style.display = "none";
     document.getElementById('image_buf').value = dataImg;
     formService.image_buf = dataImg;
-
-    // return function update() {
-    //   return document.getElementById('image_buf').value
-    // }
-
-    // $scope.getBuf(dataImg);
-    // $scope.image_buf = dataImg;
-    // $scope.$apply(function(){
-    //         self.image_buf = dataImg;
-    //     });
           }
         }
     });

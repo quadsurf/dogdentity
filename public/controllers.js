@@ -16,6 +16,7 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
     })
     .then(function(response){
       $scope.samples = response.data;
+      console.log($scope.samples);
     });
   })();
 
@@ -64,15 +65,17 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
 
   $scope.fileViewer = dragDropService.GetFile();
 
+
   $scope.submit = function (sample){
     $log.info('img buf val @ time of submission: ', formService.image_buf);
     $log.info('is this click working? ', sample);
+    // http://54.205.134.57:5000/static/full_validation/yorkshire_terrier/n02094433_3296.jpg
     $http({
       method: 'POST',
       url: 'http://54.205.134.57:5000/v0.0.1/predict',
-      headers: {
-        'Content-Type': undefined
-      }
+      // headers: {
+      //   'Content-Type': undefined
+      // }
       params: {
         image_buf: formService.image_buf,
         image_url: sample || $scope.image_url,
