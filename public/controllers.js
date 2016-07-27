@@ -1,6 +1,16 @@
 
 
-dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$log', 'formService', 'dragDropService', function ($scope, $http, $location, $log, formService, dragDropService) {
+
+dogdentityApp.controller('navController', ['$scope', 'formService', function ($scope, formService){
+  $scope.ResetVals = function(){
+    formService.image_url = '';
+    formService.image_buf = '';
+    console.log('vals reset without page refresh');
+  }
+}]);
+
+
+dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$log', 'formService', 'dragDropService', function ($scope, $http, $location, $log, formService, dragDropService){
 
 // http://54.205.134.57:5000/
   (function(){

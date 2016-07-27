@@ -13,11 +13,18 @@ dogdentityApp.service('formService', function(){
 });
 
 
+// dogdentityApp.service('resetFormService', ['formService', function(formService){
+//   this.ResetVals = function(){
+//     formService.image_buf = '';
+//     formService.image_url = '';
+//   }
+// }]);
+
+
 
 
 dogdentityApp.service('dragDropService', ['formService', function(formService){
   var self = this;
-  // valueToUpdate
   this.GetFile = function(){
     FileReaderJS.setupDrop(document.getElementById('dropzone'), {
 
@@ -32,9 +39,7 @@ dogdentityApp.service('dragDropService', ['formService', function(formService){
         load: function(e, file) {
           var img = new Image();
           img.onload = function() {
-            // var oldnode = document.getElementById('dropzone');
             document.getElementById('dropzone').appendChild(img);
-            // oldnode.replaceChild(img,oldnode);
           };
     img.src = e.target.result;
     // img.width = 150;
@@ -43,7 +48,6 @@ dogdentityApp.service('dragDropService', ['formService', function(formService){
     document.getElementById("dropText").style.display = "none";
     document.getElementById('image_buf').value = dataImg;
     formService.image_buf = dataImg;
-    console.log(dataImg);
           }
         }
     });

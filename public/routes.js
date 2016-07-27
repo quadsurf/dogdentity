@@ -1,5 +1,5 @@
 //ROUTES
-dogdentityApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
+dogdentityApp.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider){
 
   $routeProvider
     .when('/', {
@@ -11,6 +11,8 @@ dogdentityApp.config(['$routeProvider', '$httpProvider', function($routeProvider
       controller: 'resultController'
     })
     .otherwise({ redirectTo: '/'});
+
+  $locationProvider.html5Mode({enabled:true,requireBase:false});
 
   // $httpProvider.defaults.headers.common = {};
   // $httpProvider.defaults.headers.get = {};
