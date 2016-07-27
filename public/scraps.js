@@ -1,3 +1,9 @@
+
+  // setInterval(function(){
+  //   $scope.img_buf = document.getElementById('image_buf').value
+  //   // dragDropService.image_buf = $scope.image_buf
+  // },2000);
+
 // range: {
 // 'min': 0,
 // '25%': 5,

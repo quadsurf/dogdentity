@@ -2,17 +2,11 @@
 
 dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$log', 'formService', 'dragDropService', function ($scope, $http, $location, $log, formService, dragDropService) {
 
-
-  // setInterval(function(){
-  //   $scope.img_buf = document.getElementById('image_buf').value
-  //   // dragDropService.image_buf = $scope.image_buf
-  // },2000);
-
-
+// http://54.205.134.57:5000/
   (function(){
     $http({
       method: 'GET',
-      url: 'http://54.205.134.57:5000/v0.0.1/get_thumbnails?n_images=4'
+      url: 'https://crossorigin.me/http://54.236.252.88:5000/v0.0.1/get_thumbnails?n_images=4'
     })
     .then(function(response){
       $scope.samples = response.data;
@@ -68,14 +62,20 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
 
   $scope.submit = function (sample){
     $log.info('img buf val @ time of submission: ', formService.image_buf);
-    $log.info('is this click working? ', sample);
+    $log.info('is sample being passed to this function on thumbnail click? ', sample);
+    var headers = {
+				'Access-Control-Allow-Origin' : '*',
+				'Access-Control-Allow-Methods' : 'POST, GET, PUT',//OPTIONS
+				'Content-Type': 'text/plain',//application/json
+				'Accept': 'application/json'
+			  };
     // http://54.205.134.57:5000/static/full_validation/yorkshire_terrier/n02094433_3296.jpg
+    // old 54.236.252.88
+    // new 54.205.134.57
     $http({
       method: 'POST',
       url: 'http://54.205.134.57:5000/v0.0.1/predict',
-      // headers: {
-      //   'Content-Type': undefined
-      // }
+      // headers: headers,
       params: {
         image_buf: formService.image_buf,
         image_url: sample || $scope.image_url,

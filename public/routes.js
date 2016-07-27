@@ -12,10 +12,12 @@ dogdentityApp.config(['$routeProvider', '$httpProvider', function($routeProvider
     })
     .otherwise({ redirectTo: '/'});
 
-  $httpProvider.defaults.headers.common = {};
-  $httpProvider.defaults.headers.get = {};
-  $httpProvider.defaults.headers.post = {};
-  $httpProvider.defaults.headers.put = {};
-  $httpProvider.defaults.headers.patch = {};
+  // $httpProvider.defaults.headers.common = {};
+  // $httpProvider.defaults.headers.get = {};
+  // $httpProvider.defaults.headers.post = {};
+  // $httpProvider.defaults.headers.put = {};
+  // $httpProvider.defaults.headers.patch = {};
+
+  // delete $httpProvider.defaults.headers.common["X-Requested-With"];
 
 }]);
