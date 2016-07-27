@@ -20,6 +20,13 @@ dogdentityApp.service('dragDropService', ['formService', function(formService){
   // valueToUpdate
   this.GetFile = function(){
     FileReaderJS.setupDrop(document.getElementById('dropzone'), {
+
+      readAsMap: {
+        'image/*': 'DataURL',
+        'data/*': 'ArrayBuffer',
+        'text/*' : 'Text'
+      },
+
       readAsDefault: "DataURL",
       on: {
         load: function(e, file) {
@@ -36,6 +43,7 @@ dogdentityApp.service('dragDropService', ['formService', function(formService){
     document.getElementById("dropText").style.display = "none";
     document.getElementById('image_buf').value = dataImg;
     formService.image_buf = dataImg;
+    console.log(dataImg);
           }
         }
     });
