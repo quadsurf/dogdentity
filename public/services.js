@@ -10,6 +10,7 @@ dogdentityApp.service('formService', function(){
   this.augment;// ng-init="augment=true"
   this.n_preds = 3;
   this.dogResult = {};
+  // this.fileInput;
 });
 
 
@@ -107,5 +108,15 @@ dogdentityApp.service('predictService', ['$scope', '$http', '$log', function($sc
     });
     return $scope.response;
   }
+
+}]);
+
+
+dogdentityApp.service('redirectorService', ['$location', function($location){
+
+  this.redirect = function (){
+    $location.path('/result');
+    console.log('hit redirectorService');
+  };
 
 }]);

@@ -1,0 +1,267 @@
+
+
+<div class="row" style="padding-top:80px;">
+
+
+  <form ng-submit="submit()">
+
+    <div class="col-md-12">
+
+
+
+
+      <script>
+
+            function query_api(file, contents)
+            {
+                var data = new FormData();
+                data.append('image_buf', file);
+                $.ajax({
+                    url: 'http://54.205.134.57:5000/v0.0.1/predict',
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function(response) {
+                        (function () {
+                          angular.element(document.getElementById('ngViewer')).scope().TestAngularMethod(response);
+                          // angular.element(document.getElementById('ngViewer')).injector().‌​TestAngularMethod('$rootScope');
+                          })();
+                        // var src = response_object.annotated_image;
+                        // $('#annotated_image').attr('src', src);
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        alert(xhr.responseText + "   " + textStatus + "  " + errorThrown);
+                    }
+                });
+            }
+
+            // See: http://www.html5rocks.com/en/tutorials/file/dndfiles/
+
+            function log_file_info(files)
+            {
+                for (var i = 0; i < files.length; i++)
+                {
+                    var f = files[i];
+                    console.log(sprintf("%s: size:%d type:%s modified:%s",
+                                        f.name, f.size, f.type,
+                                        f.lastModifiedDate.toLocaleDateString()));
+                }
+            }
+
+            function read_files(files)
+            {
+                for (var i = 0; i < files.length; i++)
+                {
+                    var f = files[i];
+                    var reader = new FileReader();
+                    reader.onload = (function(f) {
+                        return function(e) {
+                            console.log(sprintf("Did read %s", f.name));
+                            contents = e.target.result;
+                            query_api(f, contents);
+                        }
+                    })(f);
+                    reader.readAsArrayBuffer(f);
+                }
+            }
+
+            $(function() {
+
+                if (!window.File || !window.FileReader || !window.FileList || !window.Blob)
+                {
+                    alert('The File APIs are not fully supported in this browser.');
+                }
+
+                $(window).on({
+                    dragover: function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    },
+
+                    drop: function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                });
+
+                drop_zone = $('#drop_zone')
+
+                drop_zone.on({
+                    dragover: function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        drop_zone.addClass('drop_area_inner_selected');
+                    },
+
+                    dragleave: function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        drop_zone.removeClass('drop_area_inner_selected');
+                    },
+
+                    dragenter: function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        drop_zone.addClass('drop_area_inner_selected');
+                    },
+
+                    dragexit: function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        drop_zone.removeClass('drop_area_inner_selected');
+                    },
+
+                    drop: function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        drop_zone.removeClass('drop_area_inner_selected');
+
+                        var files = e.originalEvent.dataTransfer.files; // FileList object
+                        log_file_info(files);
+                        read_files(files)
+                    }
+                });
+
+                $('#files').change(function(e) {
+                    var files = e.target.files;   // FileList object
+                    log_file_info(files);
+                    read_files(files);
+                    console.log('change function');
+                    console.log(files);
+                });
+
+            });
+
+        </script>
+
+        <div class="drop_area_outer">
+            <div class="drop_area_inner" id="drop_zone">Drop images here</div>
+        </div>
+
+        <div>
+            Or browser for files:
+            <input type="file" id="files" name="files[]" multiple />
+        </div>
+
+        <div>
+            <img id="annotated_image" width=700>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="col-md-3">
+      <!-- min-height: 100%; display: flex; align-items: center; justify-content: center; padding-top:80px; -->
+
+      <div class="col-md-6 col-md-offset-3" style="margin:10px;">
+        <span style="text-align:center;padding-left:10px;color:white;font-weight:100;font-size:40px;">Settings</span>
+      </div>
+
+      <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;">
+        <label for="mixed" style="color:#57C7C4;font-weight:100;font-size:27px;">
+          Mixed Breed? <input type="checkbox" ng-model="mixed" id="mixed" name="mixed" ng-init="mixed=false">
+        </label>
+      </div>
+
+      <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;padding-bottom:17px;">
+          <section style="display:block;">
+            <label for="n_train_images" style="color:#57C7C4;font-weight:100;font-size:27px;">Train Images
+            <a href="#" data-toggle="train" data-placement="right" title="The number of images used to train the weights in the neural network. 31,000 is a good number to test with!" style="color:#57C7C4;"><i class="glyphicon glyphicon-question-sign"></i></a>
+            <script>
+              $(function () {
+                $('[data-toggle="train"]').tooltip();
+                $('[data-toggle="epochs"]').tooltip();
+                $('[data-toggle="augment"]').tooltip();
+              })
+            </script>
+          </label>
+          </section>
+        <input type="text" ng-model="n_train_images" class="form-control" id="n_train_images" name="n_train_images">
+      </div>
+
+
+      <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;padding-bottom:17px;">
+        <section style="display:block;">
+          <label for="n_epochs" style="color:#57C7C4;font-weight:100;font-size:27px;">Epochs
+          <a href="#" data-toggle="epochs" data-placement="right" title="During the iterative training of the neural network, an Epoch is a single pass through the entire image training dataset. 150 is a good number to test this out!" style="color:#57C7C4;"><i class="glyphicon glyphicon-question-sign"></i></a>
+          </label>
+        </section>
+        <input type="text" ng-model="n_epochs" class="form-control" id="n_epochs" name="n_epochs">
+      </div>
+
+
+      <div class="form-group col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-top:8px;">
+        <section style="display:block;">
+          <label for="augment" style="color:#57C7C4;font-weight:100;font-size:27px;">Augment?
+            <input type="checkbox" ng-model="augment" id="augment" name="augment" ng-init="augment=true" style="background-color:#57C7C4;">
+              <a href="#" data-toggle="augment" data-placement="right" title="Adjusting images by slightly rotating,  zooming,  cropping, or mirror an images differently for every Epoch. Since the neural network never see the exact same image it helps prevent it from memorizing the training set. So leaving this checkbox checked, is a good idea!" style="color:#57C7C4;"><i class="glyphicon glyphicon-question-sign"></i></a>
+          </label>
+        </section>
+      </div>
+
+
+    </div>
+    <div class="col-md-6">
+
+        <div class="col-md-10 col-md-offset-1">
+          <img src="assets/images/logo.png" style="margin-top:0;margin-bottom:30px;" />
+        </div>
+
+        <div id="dropzone" class="col-md-12 text-center" style="height: 200px; padding: 10px; border: 6px dashed #57C7C4; border-radius:25px; min-height: 100%; display: flex; align-items: center; justify-content: center; background-color:rgba(255, 255, 255, 0.5);">
+          <span id="dropText" style="font-weight:100;font-size:40px;color:#222;">Drag &amp; Drop<br>Your Doggy Image Here</span>
+        </div>
+
+        <!-- <div class="form-group col-md-12"> -->
+          <!-- <label for="image_buf" style="padding-top:35px;">Drag &amp; Drop Your Doggy Image Above</label> -->
+          <input type="hidden" ng-model="image_buf" class="form-control" id="image_buf" name="image_buf">
+          <!-- readonly
+          angular.element(this).scope().change(this)
+           ng-change="printme()" -->
+        <!-- </div> -->
+
+        <div class="form-group col-md-12 text-center" style="background-color:rgba(0, 0, 0, 0.5);border-radius:25px;padding-bottom:20px;margin-top:50px;padding-top:17px;">
+          <label for="image_url" style="color:#57C7C4;font-weight:100;font-size:27px;">or<br>Paste Below an Image URL from the Web</label>
+          <input type="text" ng-model="image_url" class="form-control" id="image_url" name="image_url">
+        </div>
+
+
+          <input type="hidden" ng-model="n_preds" name="n_preds">
+        <input type="submit" class="btn btn-primary btn-lg col-lg-8 col-lg-offset-2" value="Run Breed Analysis" style="margin-top:40px; background-color:#57C7C4; border:none;">
+
+    </div>
+    <div class="col-md-3" style="background-color:rgba(0, 0, 0, 0.5);border-radius:8px;padding-bottom:20px;">
+
+      <div class="col-md-12" style="margin:10px;">
+        <span style="text-align:center;color:white;font-weight:100;font-size:40px;">Dog Samples</span>
+      </div>
+
+      <div class="col-md-12" ng-repeat="sample in samples.rand_samples" style="display:flex;align-items:center;justify-content:center;">
+        <img ng-click="submit(sample)" ng-src={{sample}} class="img-rounded" style="margin:10px;height:130px;cursor:pointer;cursor:hand;">
+      </div>
+      <center><span style="color:white;">Images Trained On</span></center>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+<div class="row">
+
+  <div class="col-md-12" style="background-color:rgba(0, 0, 0, 0.5);border-radius:25px;padding:20px;margin:50px;color:white;font-weight:100;">
+    DogDentity is a two-week Data Science project, by Charles Lynn, done during the Galvanize immersive program. The goal of this project was to explore the proficiency of convolutional neural networks at identifying variations within canine breeds by images. DogDentity includes 36 unique breeds* and has validation accuracy of 47.8%; random guessing is 2.7%. Over 31,000 images scraped from image-net.org were used in training the neural network. Techniques such as image augmentation, further prevented overfitting and increase validation accuracy.<br><br>
+
+    API and Backend including data collection, by Charles Lynn. All frontend development, by Chris Castro.<br><br>
+
+    Future Work: Clean data is important, many of the collected images have extraneous background information that creates noise when training the model. By cropping the dataset using a trained OpenCV classifier, the model's accuracy could be significantly increased.<br><br>
+
+    <span style="font-size:15px;color:#57C7C4;">*Included breeds:  Basset Hound, Husky, Beagle, King Charles Spaniel, Bernese Mountain Dog, Labrador, Border Collies, Mastiff, Boston Terrier, Minature Schnauzer, Boxer, Newfoundlands, Brittany Spaniel, Pointer Shorthaired, Chihuahua, Pomeranian, Cocker Spaniel, Poodle, Corgi, Pug, Dachshund, Rhodesian Ridgeback, Doberman, Rottweiler, English Bulldog, Shetland Sheepdog, French Bulldog, Shih Tzu, German Shepherd, Vizsla, Giant Schnauzer, Weimaraner, Golden Retrievers, West Highland White Terrier, Great Dane, Yorkshire Terrier.</span>
+  </div>
+
+</div>

@@ -3,7 +3,7 @@ dogdentityApp.config(['$routeProvider', '$locationProvider', '$httpProvider', fu
 
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/submit.htm',
+      templateUrl: 'partials/submitBU.htm',
       controller: 'submitController'
     })
     .when('/result', {

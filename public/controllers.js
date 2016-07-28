@@ -10,7 +10,7 @@ dogdentityApp.controller('navController', ['$scope', 'formService', function ($s
 }]);
 
 
-dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$log', 'formService', 'dragDropService', function ($scope, $http, $location, $log, formService, dragDropService){
+dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$log', 'formService', 'dragDropService', 'redirectorService', function ($scope, $http, $location, $log, formService, dragDropService, redirectorService){
 
 // http://54.205.134.57:5000/
   (function(){
@@ -23,6 +23,23 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
       console.log($scope.samples);
     });
   })();
+
+  $scope.TestAngularMethod = function (response) {
+        formService.dogResult = response;
+        console.log(formService.dogResult);
+        $scope.$apply(function(){ $location.path("/result"); });
+        // (function(){
+        //   redirectorService.redirect();
+        //   console.log('hit anonymous function');
+        // })();
+        // $location.path('/result');
+    };
+
+
+  // $scope.fileInput = formService.fileInput;
+  // $scope.$watch('fileInput', function(){
+  //   formService.fileInput = $scope.fileInput;
+  // });
 
 
   $scope.image_buf = formService.image_buf;
