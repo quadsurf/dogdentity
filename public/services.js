@@ -24,38 +24,38 @@ dogdentityApp.service('formService', function(){
 
 
 
-dogdentityApp.service('dragDropService', ['formService', function(formService){
-  var self = this;
-  this.GetFile = function(){
-    FileReaderJS.setupDrop(document.getElementById('dropzone'), {
-
-      readAsMap: {
-        'image/*': 'DataURL',
-        'data/*': 'ArrayBuffer',
-        'text/*' : 'Text'
-      },
-
-      readAsDefault: "DataURL",
-      on: {
-        load: function(e, file) {
-          var img = new Image();
-          img.onload = function() {
-            document.getElementById('dropzone').appendChild(img);
-          };
-    img.src = e.target.result;
-    // img.width = 150;
-    img.height = 150;
-    dataImg = e.target.result;
-    document.getElementById("dropText").style.display = "none";
-    document.getElementById('image_buf').value = dataImg;
-    formService.image_buf = dataImg;
-          }
-        }
-    });
-  }
-
-
-}]);
+// dogdentityApp.service('dragDropService', ['formService', function(formService){
+//   var self = this;
+//   this.GetFile = function(){
+//     FileReaderJS.setupDrop(document.getElementById('dropzone'), {
+//
+//       readAsMap: {
+//         'image/*': 'DataURL',
+//         'data/*': 'ArrayBuffer',
+//         'text/*' : 'Text'
+//       },
+//
+//       readAsDefault: "DataURL",
+//       on: {
+//         load: function(e, file) {
+//           var img = new Image();
+//           img.onload = function() {
+//             document.getElementById('dropzone').appendChild(img);
+//           };
+//     img.src = e.target.result;
+//     // img.width = 150;
+//     img.height = 150;
+//     dataImg = e.target.result;
+//     document.getElementById("dropText").style.display = "none";
+//     document.getElementById('image_buf').value = dataImg;
+//     formService.image_buf = dataImg;
+//           }
+//         }
+//     });
+//   }
+//
+//
+// }]);
 
 
 dogdentityApp.service('dogAPIService', ['$resource', function($resource){

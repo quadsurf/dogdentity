@@ -25,8 +25,8 @@
                     type: 'POST',
                     success: function(response) {
                         (function () {
-                          angular.element(document.getElementById('ngViewer')).scope().TestAngularMethod(response);
-                          // angular.element(document.getElementById('ngViewer')).injector().‌​TestAngularMethod('$rootScope');
+                          angular.element(document.getElementById('ngViewer')).scope().passResponseToService(response);
+                          // angular.element(document.getElementById('ngViewer')).injector().‌​passResponseToService('$rootScope');
                           })();
                         // var src = response_object.annotated_image;
                         // $('#annotated_image').attr('src', src);

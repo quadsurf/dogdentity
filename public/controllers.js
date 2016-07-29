@@ -10,13 +10,13 @@ dogdentityApp.controller('navController', ['$scope', 'formService', function ($s
 }]);
 
 
-dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$log', 'formService', 'dragDropService', 'redirectorService', function ($scope, $http, $location, $log, formService, dragDropService, redirectorService){
+dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$log', 'formService', 'redirectorService', function ($scope, $http, $location, $log, formService, redirectorService){
 
 // http://54.205.134.57:5000/
   (function(){
     $http({
       method: 'GET',
-      url: 'https://crossorigin.me/http://54.236.252.88:5000/v0.0.1/get_thumbnails?n_images=4'
+      url: 'https://crossorigin.me/http://54.236.252.88:5000/v0.0.1/get_thumbnails?n_images=9'
     })
     .then(function(response){
       $scope.samples = response.data;
@@ -24,22 +24,11 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
     });
   })();
 
-  $scope.TestAngularMethod = function (response) {
-        formService.dogResult = response;
-        console.log(formService.dogResult);
-        $scope.$apply(function(){ $location.path("/result"); });
-        // (function(){
-        //   redirectorService.redirect();
-        //   console.log('hit anonymous function');
-        // })();
-        // $location.path('/result');
-    };
-
-
-  // $scope.fileInput = formService.fileInput;
-  // $scope.$watch('fileInput', function(){
-  //   formService.fileInput = $scope.fileInput;
-  // });
+  $scope.passResponseToService = function (response) {
+    formService.dogResult = response;
+    console.log(formService.dogResult);
+    $scope.$apply(function(){ $location.path("/result"); });
+  };
 
 
   $scope.image_buf = formService.image_buf;
@@ -84,7 +73,7 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
   });
 
 
-  $scope.fileViewer = dragDropService.GetFile();
+  // $scope.fileViewer = dragDropService.GetFile();
 
 
   $scope.submit = function (sample){
