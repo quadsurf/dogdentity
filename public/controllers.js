@@ -27,7 +27,11 @@ dogdentityApp.controller('submitController', ['$scope', '$http', '$location', '$
   $scope.passResponseToService = function (response) {
     formService.dogResult = response;
     console.log(formService.dogResult);
-    $scope.$apply(function(){ $location.path("/result"); });
+    $scope.$apply(function(){
+      setTimeout(function(){
+        $location.path("/result");
+      },2500);
+    });
   };
 
 
